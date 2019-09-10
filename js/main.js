@@ -1,3 +1,5 @@
+/*Logic*/
+
 class Slot {
     constructor(name) {
         this.name = name;
@@ -55,9 +57,10 @@ class App {
         this.slot_c = new Slot('slot_c');
         this.platesQuatity = platesQuatity;
     }
+
     solve(n, source, target, auxiliary) {
         if (n > 0) {
-            this.solve(n-1, source, auxiliary, target);
+            this.solve(n - 1, source, auxiliary, target);
             let cargo = source.unload();
             target.load(cargo);
             this.solution += `#${cargo.id} ${source.getName()} -> ${target.getName()}` + '\n';
@@ -65,9 +68,10 @@ class App {
             this.solve(n - 1, auxiliary, target, source);
         }
     }
+
     run() {
-        if (typeof this.platesQuatity !== "number") {
-            return `Wrong plates quantity! It should be number. Not ${typeof this.platesQuatity}.`
+        if (typeof this.platesQuatity !== "number" || isNaN(this.platesQuatity)) {
+            return `Wrong plates quantity! It should be number. Not ${this.platesQuatity}.`
         }
         if (this.platesQuatity % 1) {
             return `Wrong plates quantity! It should be integer. Not ${this.platesQuatity}.`
@@ -84,12 +88,13 @@ class App {
     }
 }
 
-const app1 = new App(1);
-const app2 = new App(10);
-const app22 = new App('qwerty');
-const app222 = new App(4.5);
-const app3 = new App(3);
-const app4 = new App(8);
+//
+// const app1 = new App(1);
+// const app2 = new App(10);
+// const app22 = new App('qwerty');
+// const app222 = new App(4.5);
+// const app3 = new App(3);
+// const app4 = new App(8);
 
 // console.log(app1.run());
 // console.log(app2.run());
@@ -98,4 +103,27 @@ const app4 = new App(8);
 // console.log(app3.run());
 // console.log(app4.run());
 
+/*Render*/
 
+function updatePage(newData) {
+    /*update elements with new converted values*/
+    const resultList = document.getElementById('result'),
+        newDataList = newData.split('\n');
+    resultList.innerHTML = '';
+    newDataList.forEach(item => { if (item) {
+        resultList.innerHTML += `<li class="list-group-item">${item}</li>`;
+    }})
+
+}
+
+
+const inputForm = document.getElementById('input-form');
+
+inputForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const input = Number(document.getElementById('input-field').value),
+        app = new App(input),
+        solution = app.run();
+    // console.log(solution);
+    updatePage(solution);
+});
