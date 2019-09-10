@@ -23,33 +23,6 @@ class Slot {
     }
 }
 
-/*const slot_a = new Slot('slot_a'),
-    slot_b = new Slot('slot_b'),
-    slot_c = new Slot('slot_c');
-
-for (let i = 3; i > 0; i--) {
-    slot_a.load({id: i});
-}
-console.log(slot_a.getName(), slot_a.getContent());
-console.log(slot_b.getName(), slot_b.getContent());
-console.log(slot_c.getName(), slot_c.getContent());
-
-function solver(n, source, target, auxiliary) {
-    if (n > 0) {
-        solver(n-1, source, auxiliary, target);
-        let cargo = source.unload();
-        target.load(cargo);
-        console.log(source.name, '->', target.name, source.getName(), source.getContent(), target.getName(), target.getContent() );
-        solver(n - 1, auxiliary, target, source);
-    }
-}
-
-solver(3, slot_a, slot_c, slot_b);
-
-console.log('slot_a', slot_a.getContent());
-console.log('slot_b', slot_b.getContent());
-console.log('slot_c', slot_c.getContent());*/
-
 class App {
     constructor(platesQuatity) {
         this.slot_a = new Slot('slot_a');
@@ -64,7 +37,6 @@ class App {
             let cargo = source.unload();
             target.load(cargo);
             this.solution += `#${cargo.id} ${source.getName()} -> ${target.getName()}` + '\n';
-            // console.log(source.getName(), '->', target.getName(), source.getName(), source.getContent(), target.getName(), target.getContent() );
             this.solve(n - 1, auxiliary, target, source);
         }
     }
@@ -88,21 +60,6 @@ class App {
     }
 }
 
-//
-// const app1 = new App(1);
-// const app2 = new App(10);
-// const app22 = new App('qwerty');
-// const app222 = new App(4.5);
-// const app3 = new App(3);
-// const app4 = new App(8);
-
-// console.log(app1.run());
-// console.log(app2.run());
-// console.log(app22.run());
-// console.log(app222.run());
-// console.log(app3.run());
-// console.log(app4.run());
-
 /*Render*/
 
 function updatePage(newData) {
@@ -124,6 +81,5 @@ inputForm.addEventListener('submit', event => {
     const input = Number(document.getElementById('input-field').value),
         app = new App(input),
         solution = app.run();
-    // console.log(solution);
     updatePage(solution);
 });
