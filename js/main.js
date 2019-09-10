@@ -91,9 +91,11 @@ const app222 = new App(4.5);
 const app3 = new App(3);
 const app4 = new App(8);
 
-console.log(app1.run());
-console.log(app2.run());
-console.log(app22.run());
-console.log(app222.run());
+// console.log(app1.run());
+// console.log(app2.run());
+// console.log(app22.run());
+// console.log(app222.run());
 // console.log(app3.run());
 // console.log(app4.run());
+
+
