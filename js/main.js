@@ -66,6 +66,12 @@ class App {
         }
     }
     run() {
+        if (typeof this.platesQuatity !== "number") {
+            return `Wrong plates quantity! It should be number. Not ${typeof this.platesQuatity}.`
+        }
+        if (this.platesQuatity % 1) {
+            return `Wrong plates quantity! It should be integer. Not ${this.platesQuatity}.`
+        }
         if (this.platesQuatity < 3 || this.platesQuatity > 8) {
             return `Wrong plates quantity! It should be in range from 3 to 8. Not ${this.platesQuatity}.`
         }
@@ -80,10 +86,14 @@ class App {
 
 const app1 = new App(1);
 const app2 = new App(10);
+const app22 = new App('qwerty');
+const app222 = new App(4.5);
 const app3 = new App(3);
 const app4 = new App(8);
 
 console.log(app1.run());
 console.log(app2.run());
-console.log(app3.run());
-console.log(app4.run());
+console.log(app22.run());
+console.log(app222.run());
+// console.log(app3.run());
+// console.log(app4.run());
